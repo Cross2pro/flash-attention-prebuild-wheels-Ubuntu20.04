@@ -1,0 +1,38 @@
+name: "Manual: Run Linux wheel build (caller)"
+
+on:
+  workflow_dispatch:
+    inputs:
+      flash-attn-version:
+        description: "Flash-Attention version (传给被调用的 workflow)"
+        required: true
+        type: string
+        default: "v1.0.0"
+      python-version:
+        description: "Python version (eg. 3.10)"
+        required: true
+        type: string
+        default: "3.10"
+      torch-version:
+        description: "PyTorch version (eg. 2.2.0)"
+        required: true
+        type: string
+        default: "2.2.0"
+      cuda-version:
+        description: "CUDA version (eg. 11.8)"
+        required: true
+        type: string
+        default: "11.8"
+
+jobs:
+  call_build_wheels:
+    # 调用同一仓库下的可复用 workflow (workflow_call)
+    uses: ./.github/workflows/build_linux.yml
+    with:
+      flash-attn-version: ${{ github.event.inputs.flash-attn-version }}
+      python-version: ${{ github.event.inputs.python-version }}
+      torch-version: ${{ github.event.inputs.torch-version }}
+      cuda-version: ${{ github.event.inputs.cuda-version }}
+    # 将需要的 secrets 传给被调用的 workflow（至少要传 GITHUB_TOKEN 用于 release 上传）
+    secrets:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
