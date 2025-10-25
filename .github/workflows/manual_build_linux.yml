@@ -17,12 +17,12 @@ on:
         description: "PyTorch version (eg. 2.2.0)"
         required: true
         type: string
-        default: "2.2.0"
+        default: "2.6.0"
       cuda-version:
         description: "CUDA version (eg. 11.8)"
         required: true
         type: string
-        default: "11.8"
+        default: "12.8"
 
 jobs:
   call_build_wheels:
