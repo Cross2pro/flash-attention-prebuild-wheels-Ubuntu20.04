@@ -27,7 +27,7 @@ on:
 jobs:
   build_wheels:
     name: Build wheels and Upload (Linux x86_64, ${{ inputs.flash-attn-version }}, ${{ inputs.python-version }}, ${{ inputs.torch-version }}, ${{ inputs.cuda-version }})
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     env:
       DEBIAN_FRONTEND: noninteractive
       TERM: xterm-256color
