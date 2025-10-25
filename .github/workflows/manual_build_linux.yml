@@ -35,4 +35,4 @@ jobs:
       cuda-version: ${{ github.event.inputs.cuda-version }}
     # 将需要的 secrets 传给被调用的 workflow（至少要传 GITHUB_TOKEN 用于 release 上传）
     secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: inherit
